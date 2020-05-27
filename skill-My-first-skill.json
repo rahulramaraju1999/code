@@ -1,0 +1,384 @@
+{
+  "intents": [
+    {
+      "intent": "cancellation",
+      "examples": [
+        {
+          "text": "i would like to cancel my appointment"
+        }
+      ],
+      "description": "to cancel"
+    },
+    {
+      "intent": "check",
+      "examples": [
+        {
+          "text": "i would like to check the health progress"
+        }
+      ],
+      "description": "check progress"
+    },
+    {
+      "intent": "date",
+      "examples": [
+        {
+          "text": "tuesday"
+        },
+        {
+          "text": "thursday"
+        },
+        {
+          "text": "wednesday"
+        },
+        {
+          "text": "saturday"
+        },
+        {
+          "text": "friday"
+        },
+        {
+          "text": "i would like it on tuesday"
+        },
+        {
+          "text": "i would like it on friday"
+        },
+        {
+          "text": "monday"
+        },
+        {
+          "text": "day"
+        }
+      ],
+      "description": "friday"
+    },
+    {
+      "intent": "hello",
+      "examples": [
+        {
+          "text": "hello"
+        },
+        {
+          "text": "hi"
+        },
+        {
+          "text": "hi there"
+        },
+        {
+          "text": "hey"
+        },
+        {
+          "text": "hola"
+        }
+      ],
+      "description": "greet"
+    },
+    {
+      "intent": "appointment",
+      "examples": [
+        {
+          "text": "i want to get an appointmet for hospital"
+        },
+        {
+          "text": "i would like to build an appointment"
+        },
+        {
+          "text": "20/12/2121"
+        },
+        {
+          "text": "need to book appointment"
+        }
+      ],
+      "description": "taking an appointment for a diagnosis of the disease"
+    },
+    {
+      "intent": "discharge",
+      "examples": [
+        {
+          "text": "i would like to check the date of discharge"
+        }
+      ],
+      "description": "to check the relieve date of the livestock"
+    },
+    {
+      "intent": "confirmation",
+      "examples": [
+        {
+          "text": "please check my appointment for confirmation"
+        }
+      ],
+      "description": "appoint need to be confirmed"
+    }
+  ],
+  "entities": [
+    {
+      "entity": "payment",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "visa",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "phonepay",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "gpay",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "paytm",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "mastercard",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "cancel",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "progress",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "treatment in progress",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "treated",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "confirmantion",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "create new apointment",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "appointment pending",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "appointment confirmed",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "please enter your appointment id"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "Welcome",
+      "conditions": "#confirmation",
+      "dialog_node": "node_2_1590575169401",
+      "previous_sibling": "node_8_1590575056025"
+    },
+    {
+      "type": "standard",
+      "title": "date",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "thank you"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "Welcome",
+      "conditions": "#date",
+      "dialog_node": "node_3_1590577467271",
+      "previous_sibling": "node_5_1590564137778"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "please enter your appointment number"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "Welcome",
+      "conditions": "#cancellation",
+      "dialog_node": "node_8_1590575056025",
+      "previous_sibling": "node_10_1590564217167"
+    },
+    {
+      "type": "standard",
+      "title": "book",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "sure thank you for approaching us what date would u like to have an appointment"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "values": [],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "Welcome",
+      "conditions": "#appointment",
+      "dialog_node": "node_5_1590564137778",
+      "previous_sibling": "response_3_1590574693102"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "please  enter you live stock id"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "values": [],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "Welcome",
+      "conditions": "#check",
+      "dialog_node": "node_10_1590564217167",
+      "previous_sibling": "node_3_1590577467271"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "hello! how can i help you?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "Welcome",
+      "conditions": "#hello",
+      "dialog_node": "response_3_1590574693102"
+    },
+    {
+      "type": "standard",
+      "title": "thank you",
+      "dialog_node": "node_2_1590564213379",
+      "previous_sibling": "Anything else"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "yes,thank you"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "Welcome",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "welcome",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#hello",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "My first skill",
+  "language": "en",
+  "description": ""
+}
